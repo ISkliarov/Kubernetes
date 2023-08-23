@@ -1,0 +1,9 @@
+FROM alpine:latest
+
+RUN apk update \ 
+  apk add nginx \
+  touch /var/www/html/index.html\
+  chmod 777 /var/www/html/index.html
+
+COPY quickstart.sh /
+CMD ["/quickstart.sh"]

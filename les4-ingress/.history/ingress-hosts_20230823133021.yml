@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-hosts-rules
+
+spec:
+  rules:
+  - host: main.azimuthpro.online
+    http:
+      paths:
+        - backend:
+            service:
+              name: main
+            servicePort: 80
+          pathType: 

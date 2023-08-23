@@ -1,0 +1,6 @@
+FROM php:7.2-apache
+
+COPY ./index.php /var/www/html/index.php
+
+ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+EXPOSE 80

@@ -1,0 +1,1 @@
+echo "Hello, world! The time is $(date)." > /var/www/html/index.html

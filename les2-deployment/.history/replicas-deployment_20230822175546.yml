@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: repl-deployment
+  labels:
+    app: repl-k8s-application
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      project: repl
+  template:
+    metadata:
+      labels:
+        project: repl
+    spec:
+      containers:
+      - name: personal-web
+        image: adv4000/k8sphp:latest
+        ports:
+          - containerPort: 80

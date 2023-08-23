@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: repl-deployment
+  labels:
+    app: repl-k8s-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: repl
+  template:
+    metadata:
+      labels:
+        project: repl
+    spec:
+      containers:
+      - name: personal-web
+        image: adv4000/k8sphp:latest
+        ports:
+          - containerPort: 80
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: repl-deployment-autoscaling
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: repl-deployment
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+

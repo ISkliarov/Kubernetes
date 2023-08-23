@@ -1,0 +1,16 @@
+FROM alpine
+
+RUN apk update && apk upgrade
+RUN apk add httpd
+RUN apk add --no-cache  --repository http://dl-cdn.alpinelinux.org/alpine/edge/community php
+RUN  mkdir /var/www/html/
+RUN  chmod 777 /var/www/html/
+
+
+COPY quickstart.sh /
+COPY ./index.php /var/www/html/index.php
+
+
+#ENTRYPOINT ["/quickstart.sh"]
+CMD ["/usr/sbin/httpd","FOREGROUND"]
+EXPOSE 80

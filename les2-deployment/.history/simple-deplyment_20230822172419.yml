@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personal-deployment
+  labels:
+    app: my-k8s-application
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: personl
+  template:
+    metadata:
+      labels:
+        project: personal
+    spec:
+      containers:
+      - name: personal-web
+        image: adv4000/k8sphp:version1
+        ports:
+          - containerPort: 80

@@ -1,0 +1,14 @@
+# Build Container
+
+docker build -t web-app-1 .
+
+# Run Container locally
+
+docker run -d -p 8080:80 web-app
+
+# Push to DockerHub
+
+docker login -u your-username
+docker tag web-app iskliarov/web-app:1.0
+docker push iskliarov/web-app:1.0
+

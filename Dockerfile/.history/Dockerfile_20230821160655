@@ -1,0 +1,13 @@
+FROM alpine
+
+RUN apk update 
+RUN apk add nginx
+RUN  chmod 777 /var/www/html/
+RUN  touch /var/www/html/index.html
+
+COPY quickstart.sh /
+COPY ./index.php /var/www/html/index.php
+
+
+CMD ["/quickstart.sh"]
+EXPOSE 80
